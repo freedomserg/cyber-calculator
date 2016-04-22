@@ -3,19 +3,18 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class Converter {
+public class Converter<T> {
     private Deque<String> stackOfOperators;
     private List<String> expressionInPostfixNotation;
-    private ExecutedCalculatorOperations operations;
+    private ExecutedCalculatorOperations<T> operations;
 
-    public Converter(ExecutedCalculatorOperations operations) {
+    public Converter(ExecutedCalculatorOperations<T> operations) {
         this.stackOfOperators = new ArrayDeque<>();
         this.expressionInPostfixNotation = new ArrayList<>();
         this.operations = operations;
     }
 
     List<String> convertToPostfixNotation(String validatedString) {
-
         String[] partsOfInfixNotation = validatedString.split(" ");
 
         for (String part : partsOfInfixNotation) {
@@ -42,8 +41,8 @@ public class Converter {
                     }
                     removeOpeningBracket();
 
-                } else if (getOperatorPriority(part) <= getOperatorPriority(stackOfOperators.peek())) {
-                    while (sizeOfStackOfOperators() > 0 && getOperatorPriority(part) <= getOperatorPriority(stackOfOperators.peek())) {
+                } else if (getOperationPriority(part) <= getOperationPriority(stackOfOperators.peek())) {
+                    while (sizeOfStackOfOperators() > 0 && getOperationPriority(part) <= getOperationPriority(stackOfOperators.peek())) {
                         addNumberToConvertedExpression(stackOfOperators.pop());
                     }
                     stackOfOperators.push(part);
@@ -89,10 +88,10 @@ public class Converter {
     }
 
     private boolean isOperator(String part) {
-        return operations.containsOperator(part);
+        return operations.containsOperation(part);
     }
 
-    private Integer getOperatorPriority(String operator) {
-        return operations.getOperation(operator).getPriority();
+    private Integer getOperationPriority(String operationLiteral) {
+        return operations.getOperation(operationLiteral).getPriority();
     }
 }

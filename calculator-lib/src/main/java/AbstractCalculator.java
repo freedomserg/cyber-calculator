@@ -1,30 +1,58 @@
 import java.util.*;
 
 public abstract class AbstractCalculator<T> {
-    protected ExecutedCalculatorOperations operations;
+    protected ExecutedCalculatorOperations<T> operations;
     protected Deque<T> computingStack;
-    protected List<String> expressionInPostfixNotation;
     protected Validator validator;
-    protected Converter converter;
+    protected Converter<T> converter;
 
-    public AbstractCalculator(ExecutedCalculatorOperations operations, Deque<T> computingStack,
-                              List<String> expressionInPostfixNotation, Validator validator) {
-        this.operations = operations;
-        this.computingStack = computingStack;
-        this.expressionInPostfixNotation = expressionInPostfixNotation;
-        this.validator = validator;
-        this.converter = new Converter(operations);
+    public AbstractCalculator() {
+        this.computingStack = new ArrayDeque<>();
+        initExecutedOperations();
+        initConverter();
+        initValidator();
     }
+
+    protected abstract void initExecutedOperations();
+
+    protected abstract void initConverter();
+
+    protected abstract void initValidator();
 
     public T evaluateExpression(String inputExpression) {
         validator.validateExpressionAndCheckAcceptableOperations(inputExpression, operations);
         return compute(converter.convertToPostfixNotation(inputExpression));
     }
 
-    T compute(List<String> postfixNotation) {
-        return null;
+    private T compute(List<String> postfixNotation) {
+        for (String part : postfixNotation) {
+            if (!isOperator(part)) {
+                addNumberToComputingStack(part);
+            } else {
+                computingStack.push(executeOperation(part));
+            }
+        }
+        return computingStack.pop();
     }
 
+    private boolean isOperator(String part) {
+        return operations.containsOperation(part);
+    }
 
+    protected abstract void addNumberToComputingStack(String number);
 
+    protected T executeOperation(String operationLiteral) {
+        Operation<T> operation = operations.getOperation(operationLiteral);
+        Arguments<T> arguments = getArguments(operation);
+        return operation.getResult(arguments);
+    }
+
+    protected Arguments<T> getArguments(Operation<T> operation) {
+        Arguments<T> arguments = new Arguments<>();
+        if (operation instanceof BinaryOperation) {
+        arguments.secondArg = computingStack.pop();
+        }
+        arguments.firstArg = computingStack.pop();
+        return arguments;
+    }
 }

@@ -1,21 +1,24 @@
+import java.util.HashMap;
 import java.util.Map;
 
-public class ExecutedCalculatorOperations {
-    private Map<String, Operation> operations;
+public class ExecutedCalculatorOperations<T> {
+    private Map<String, Operation<T>> operations;
 
-    public ExecutedCalculatorOperations(Map<String, Operation> operations) {
-        this.operations = operations;
+    public ExecutedCalculatorOperations() {
+        this.operations = new HashMap<>();
+        operations.put("(", new Brace(0));
+        operations.put(")", new Brace(0));
     }
 
-    public void addOperation(String operationLiteral, Operation operation) {
+    public void addOperation(String operationLiteral, Operation<T> operation) {
         operations.put(operationLiteral, operation);
     }
 
-    public Operation getOperation(String key) {
+    public Operation<T> getOperation(String key) {
         return operations.get(key);
     }
 
-    public boolean containsOperator(String key) {
+    public boolean containsOperation(String key) {
         return operations.containsKey(key);
     }
 }
