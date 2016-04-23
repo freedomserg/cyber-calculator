@@ -1,3 +1,5 @@
+import CalculatorExceptions.UnsupportedOperationCalculatorException;
+
 public class DoublesCalculator extends AbstractCalculator<Double> {
 
     @Override
@@ -22,8 +24,7 @@ public class DoublesCalculator extends AbstractCalculator<Double> {
         try {
             computingStack.push(Double.valueOf(number));
         } catch (NumberFormatException ex) {
-            //throw new UnsupportedOperationCalculatorException();
-            throw new RuntimeException();
+            throw new UnsupportedOperationCalculatorException();
         }
     }
 }

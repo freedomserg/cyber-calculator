@@ -1,3 +1,5 @@
+import CalculatorExceptions.InvalidInputExpressionCalculatorException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -18,8 +20,7 @@ public class DoublesValidatorImpl implements Validator {
                 if (!digitsMatcher.matches()) {
                     Matcher doublesMatcher = DOUBLES_PATTERN.matcher(word);
                     if (!doublesMatcher.matches()) {
-                        //throw new InvalidInputExpressionCalculatorException();
-                        throw new RuntimeException();
+                        throw new InvalidInputExpressionCalculatorException();
                     }
                 }
             }

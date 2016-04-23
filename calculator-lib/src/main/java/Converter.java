@@ -1,3 +1,6 @@
+import CalculatorExceptions.EmptyBracketsCalculatorException;
+import CalculatorExceptions.MismatchBracketsCalculatorException;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -29,12 +32,10 @@ public class Converter<T> {
 
                 } else if (isClosingBrace(arg)) {
                     if (isOpeningBrace(stackOfOperators.peek())) {
-                        //throw new EmptyBracketsCalculatorException();
-                        throw new RuntimeException();
+                        throw new EmptyBracketsCalculatorException();
                     }
                     if (!stackOfOperators.contains("(")) {
-                        //throw new MismatchBracketsCalculatorException();
-                        throw new RuntimeException();
+                        throw new MismatchBracketsCalculatorException();
                     }
                     while (getSizeOfStackOfOperators() > 0 && !isOpeningBrace(stackOfOperators.peek())) {
                         addNumberToConvertedExpression(stackOfOperators.pop());
@@ -58,8 +59,7 @@ public class Converter<T> {
 
         while (getSizeOfStackOfOperators() > 0) {
             if (stackOfOperators.contains("(")) {
-                //throw new MismatchBracketsCalculatorException();
-                throw new RuntimeException();
+                throw new MismatchBracketsCalculatorException();
             }
             addNumberToConvertedExpression(stackOfOperators.pop());
         }

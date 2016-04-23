@@ -24,7 +24,7 @@ public abstract class AbstractCalculator<T> {
         return compute(converter.convertToPostfixNotation(inputExpression));
     }
 
-    private T compute(List<String> postfixNotation) {
+    T compute(List<String> postfixNotation) {
         for (String arg : postfixNotation) {
             if (!isOperator(arg)) {
                 addNumberToComputingStack(arg);
