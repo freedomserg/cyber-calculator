@@ -17,17 +17,17 @@ public class Converter<T> {
     List<String> convertToPostfixNotation(String validatedString) {
         String[] partsOfInfixNotation = validatedString.split(" ");
 
-        for (String part : partsOfInfixNotation) {
+        for (String arg : partsOfInfixNotation) {
 
-            if (!isOperator(part)) {
-                addNumberToConvertedExpression(part);
+            if (!isOperator(arg)) {
+                addNumberToConvertedExpression(arg);
 
-            } else if (sizeOfStackOfOperators() > 0) {
+            } else if (getSizeOfStackOfOperators() > 0) {
 
-                if (isOpeningBrace(part)) {
-                    stackOfOperators.push(part);
+                if (isOpeningBrace(arg)) {
+                    stackOfOperators.push(arg);
 
-                } else if (isClosingBrace(part)) {
+                } else if (isClosingBrace(arg)) {
                     if (isOpeningBrace(stackOfOperators.peek())) {
                         //throw new EmptyBracketsCalculatorException();
                         throw new RuntimeException();
@@ -36,27 +36,27 @@ public class Converter<T> {
                         //throw new MismatchBracketsCalculatorException();
                         throw new RuntimeException();
                     }
-                    while (sizeOfStackOfOperators() > 0 && !isOpeningBrace(stackOfOperators.peek())) {
+                    while (getSizeOfStackOfOperators() > 0 && !isOpeningBrace(stackOfOperators.peek())) {
                         addNumberToConvertedExpression(stackOfOperators.pop());
                     }
-                    removeOpeningBracket();
+                    removeOpeningBrace();
 
-                } else if (getOperationPriority(part) <= getOperationPriority(stackOfOperators.peek())) {
-                    while (sizeOfStackOfOperators() > 0 && getOperationPriority(part) <= getOperationPriority(stackOfOperators.peek())) {
+                } else if (getOperationPriority(arg) <= getOperationPriority(stackOfOperators.peek())) {
+                    while (getSizeOfStackOfOperators() > 0 && getOperationPriority(arg) <= getOperationPriority(stackOfOperators.peek())) {
                         addNumberToConvertedExpression(stackOfOperators.pop());
                     }
-                    stackOfOperators.push(part);
+                    stackOfOperators.push(arg);
 
                 } else {
-                    stackOfOperators.push(part);
+                    stackOfOperators.push(arg);
                 }
 
             } else {
-                stackOfOperators.push(part);
+                stackOfOperators.push(arg);
             }
         }
 
-        while (sizeOfStackOfOperators() > 0) {
+        while (getSizeOfStackOfOperators() > 0) {
             if (stackOfOperators.contains("(")) {
                 //throw new MismatchBracketsCalculatorException();
                 throw new RuntimeException();
@@ -71,7 +71,7 @@ public class Converter<T> {
         return ")".equals(part);
     }
 
-    private void removeOpeningBracket() {
+    private void removeOpeningBrace() {
         stackOfOperators.removeFirst();
     }
 
@@ -79,7 +79,7 @@ public class Converter<T> {
         return "(".equals(part);
     }
 
-    private int sizeOfStackOfOperators() {
+    private int getSizeOfStackOfOperators() {
         return stackOfOperators.size();
     }
 

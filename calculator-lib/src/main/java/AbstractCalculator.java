@@ -25,18 +25,18 @@ public abstract class AbstractCalculator<T> {
     }
 
     private T compute(List<String> postfixNotation) {
-        for (String part : postfixNotation) {
-            if (!isOperator(part)) {
-                addNumberToComputingStack(part);
+        for (String arg : postfixNotation) {
+            if (!isOperator(arg)) {
+                addNumberToComputingStack(arg);
             } else {
-                computingStack.push(executeOperation(part));
+                computingStack.push(executeOperation(arg));
             }
         }
         return computingStack.pop();
     }
 
-    private boolean isOperator(String part) {
-        return operations.containsOperation(part);
+    private boolean isOperator(String arg) {
+        return operations.containsOperation(arg);
     }
 
     protected abstract void addNumberToComputingStack(String number);

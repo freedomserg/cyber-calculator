@@ -14,11 +14,11 @@ public class ExecutedCalculatorOperations<T> {
         operations.put(operationLiteral, operation);
     }
 
-    public Operation<T> getOperation(String key) {
-        return operations.get(key);
+    public Operation<T> getOperation(String keyLiteral) {
+        return operations.get(keyLiteral);
     }
 
-    public boolean containsOperation(String key) {
-        return operations.containsKey(key);
+    public boolean containsOperation(String keyLiteral) {
+        return operations.containsKey(keyLiteral);
     }
 }
