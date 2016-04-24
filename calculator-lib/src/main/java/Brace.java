@@ -6,7 +6,6 @@ public class Brace extends Operation {
 
     @Override
     public Object getResult(Arguments arguments) {
-        return new RuntimeException();
-        //return UnsupportedOperationException();
+        return new UnsupportedOperationException();
     }
 }

@@ -20,10 +20,6 @@ public class IntegersCalculator extends AbstractCalculator<Integer> {
 
     @Override
     protected void addNumberToComputingStack(String number) {
-        try {
-            computingStack.push(Integer.valueOf(number));
-        } catch (NumberFormatException ex) {
-            throw new UnsupportedOperationCalculatorException();
-        }
+        computingStack.push(Integer.valueOf(number));
     }
 }

@@ -21,10 +21,6 @@ public class DoublesCalculator extends AbstractCalculator<Double> {
 
     @Override
     protected void addNumberToComputingStack(String number) {
-        try {
-            computingStack.push(Double.valueOf(number));
-        } catch (NumberFormatException ex) {
-            throw new UnsupportedOperationCalculatorException();
-        }
+        computingStack.push(Double.valueOf(number));
     }
 }
