@@ -6,7 +6,7 @@ public class DoublesCalculator extends AbstractCalculator<Double> {
     protected void initExecutedOperations() {
         operations = new ExecutedCalculatorOperations<>();
         operations.addOperation("+", new DoublesAddition(1));
-        operations.addOperation("-", new DoublesSubtracting(1));
+        operations.addOperation("-", new DoublesSubtraction(1));
     }
 
     @Override

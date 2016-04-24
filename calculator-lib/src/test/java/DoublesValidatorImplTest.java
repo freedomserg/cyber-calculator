@@ -9,7 +9,7 @@ public class DoublesValidatorImplTest {
     public static void initDoublesExecutedOperations() {
         doublesOperations = new ExecutedCalculatorOperations<>();
         doublesOperations.addOperation("+", new DoublesAddition(1));
-        doublesOperations.addOperation("-", new DoublesSubtracting(1));
+        doublesOperations.addOperation("-", new DoublesSubtraction(1));
     }
 
     @org.junit.Test

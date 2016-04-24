@@ -13,7 +13,7 @@ public class ConverterTest {
     public static void initDoublesExecutedOperations() {
         doublesOperations = new ExecutedCalculatorOperations<>();
         doublesOperations.addOperation("+", new DoublesAddition(1));
-        doublesOperations.addOperation("-", new DoublesSubtracting(1));
+        doublesOperations.addOperation("-", new DoublesSubtraction(1));
     }
 
     @org.junit.Test
@@ -26,9 +26,9 @@ public class ConverterTest {
 
     @org.junit.Test
     public void testConvertingWithAdditionSubtractionBracesOnDoubles() {
-        infixNotation = "5.197 - ( 74.1 - 11.33 ) + 125.48";
+        infixNotation = "5.197 - ( ( 74.1 - 11.33 ) + 125.48 )";
         List<String> actual = new Converter<>(doublesOperations).convertToPostfixNotation(infixNotation);
-        List<String> expected = Arrays.asList("5.197", "74.1", "11.33", "-", "-", "125.48", "+");
+        List<String> expected = Arrays.asList("5.197", "74.1", "11.33", "-", "125.48", "+", "-");
         Assert.assertEquals(expected, actual);
     }
 
