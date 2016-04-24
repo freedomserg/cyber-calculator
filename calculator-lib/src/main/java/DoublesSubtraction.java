@@ -1,6 +1,6 @@
-public class DoublesSubtracting extends BinaryOperation<Double> {
+public class DoublesSubtraction extends BinaryOperation<Double> {
 
-    public DoublesSubtracting(int priority) {
+    public DoublesSubtraction(int priority) {
         super(priority);
     }
 
