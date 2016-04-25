@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--setter-based injection-->
+    <bean id="cyber-calculator" class="CyberCalculator">
+        <property name="calculator" ref="doubles-calculator"/>
+    </bean>
+
+    <!--constructor-based injection-->
+<!--    <bean id="cyber-calculator" class="CyberCalculator">
+        <constructor-arg ref="doubles-calculator"/>
+    </bean>-->
+
+    <bean id="doubles-calculator" class="DoublesCalculator"/>
+
+</beans>
