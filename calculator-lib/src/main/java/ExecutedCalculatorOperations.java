@@ -1,8 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExecutedCalculatorOperations<T> {
-    private Map<String, Operation<T>> operations;
+public class ExecutedCalculatorOperations {
+    private Map<String, Operation> operations;
 
     public ExecutedCalculatorOperations() {
         this.operations = new HashMap<>();
@@ -10,11 +10,11 @@ public class ExecutedCalculatorOperations<T> {
         operations.put(")", new Brace(0));
     }
 
-    public void addOperation(String operationLiteral, Operation<T> operation) {
+    public void addOperation(String operationLiteral, Operation operation) {
         operations.put(operationLiteral, operation);
     }
 
-    public Operation<T> getOperation(String keyLiteral) {
+    public Operation getOperation(String keyLiteral) {
         return operations.get(keyLiteral);
     }
 

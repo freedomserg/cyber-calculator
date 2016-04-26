@@ -9,9 +9,9 @@ import java.util.List;
 public class Converter<T> {
     private Deque<String> stackOfOperators;
     private List<String> expressionInPostfixNotation;
-    private ExecutedCalculatorOperations<T> operations;
+    private ExecutedCalculatorOperations operations;
 
-    public Converter(ExecutedCalculatorOperations<T> operations) {
+    public Converter(ExecutedCalculatorOperations operations) {
         this.stackOfOperators = new ArrayDeque<>();
         this.expressionInPostfixNotation = new ArrayList<>();
         this.operations = operations;

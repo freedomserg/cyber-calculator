@@ -1,7 +1,7 @@
 import java.util.*;
 
 public abstract class AbstractCalculator<T> {
-    protected ExecutedCalculatorOperations<T> operations;
+    protected ExecutedCalculatorOperations operations;
     protected Deque<T> computingStack;
     protected Validator validator;
     protected Converter<T> converter;
@@ -13,7 +13,15 @@ public abstract class AbstractCalculator<T> {
         initValidator();
     }
 
-    protected abstract void initExecutedOperations();
+    private void initExecutedOperations() {
+        operations = new ExecutedCalculatorOperations();
+        operations.addOperation("+", new Addition(1));
+        operations.addOperation("-", new Subtraction(1));
+    }
+
+    public void addNewOperation(String operationLiteral, Operation operation) {
+        operations.addOperation(operationLiteral, operation);
+    }
 
     protected abstract void initConverter();
 
@@ -41,18 +49,7 @@ public abstract class AbstractCalculator<T> {
 
     protected abstract void addNumberToComputingStack(String number);
 
-    protected T executeOperation(String operationLiteral) {
-        Operation<T> operation = operations.getOperation(operationLiteral);
-        Arguments<T> arguments = getArguments(operation);
-        return operation.getResult(arguments);
-    }
+    protected abstract T executeOperation(String operationLiteral);
 
-    protected Arguments<T> getArguments(Operation<T> operation) {
-        Arguments<T> arguments = new Arguments<>();
-        if (operation instanceof BinaryOperation) {
-        arguments.secondArg = computingStack.pop();
-        }
-        arguments.firstArg = computingStack.pop();
-        return arguments;
-    }
+    protected abstract Arguments<T> getArguments(Operation operation);
 }

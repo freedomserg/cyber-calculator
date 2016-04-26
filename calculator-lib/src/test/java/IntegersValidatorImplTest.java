@@ -3,13 +3,13 @@ import org.junit.BeforeClass;
 
 public class IntegersValidatorImplTest {
     private String input;
-    static ExecutedCalculatorOperations<Integer> integersOperations;
+    static ExecutedCalculatorOperations integersOperations;
 
     @BeforeClass
     public static void initDoublesExecutedOperations() {
-        integersOperations = new ExecutedCalculatorOperations<>();
-        integersOperations.addOperation("+", new IntegersAddition(1));
-        integersOperations.addOperation("-", new IntegersSubtraction(1));
+        integersOperations = new ExecutedCalculatorOperations();
+        integersOperations.addOperation("+", new Addition(1));
+        integersOperations.addOperation("-", new Subtraction(1));
     }
 
     @org.junit.Test

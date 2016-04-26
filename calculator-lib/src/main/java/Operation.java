@@ -1,11 +1,14 @@
-public abstract class Operation <T> {
+public abstract class Operation {
     private int priority;
 
     public Operation(int priority) {
         this.priority = priority;
     }
 
-    public abstract T getResult(Arguments<T> arguments);
+    public abstract double getResult(DoubleArguments arguments);
+    public abstract float getResult(FloatArguments arguments);
+    public abstract int getResult(IntegerArguments arguments);
+    public abstract long getResult(LongArguments arguments);
 
     public int getPriority() {
         return priority;

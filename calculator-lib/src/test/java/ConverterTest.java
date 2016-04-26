@@ -7,13 +7,13 @@ import java.util.List;
 
 public class ConverterTest {
     String infixNotation;
-    static ExecutedCalculatorOperations<Double> doublesOperations;
+    static ExecutedCalculatorOperations doublesOperations;
 
     @BeforeClass
     public static void initDoublesExecutedOperations() {
-        doublesOperations = new ExecutedCalculatorOperations<>();
-        doublesOperations.addOperation("+", new DoublesAddition(1));
-        doublesOperations.addOperation("-", new DoublesSubtraction(1));
+        doublesOperations = new ExecutedCalculatorOperations();
+        doublesOperations.addOperation("+", new Addition(1));
+        doublesOperations.addOperation("-", new Subtraction(1));
     }
 
     @org.junit.Test
