@@ -11,6 +11,6 @@ public class Bootstrap {
         String expression = IOUtil.getExpression();
         IOUtil.printToConsole(expression);
         IOUtil.printToConsole(IOUtil.getEqualSign());
-        IOUtil.printToConsole(cyberCalculator.evaluate(expression));
+        IOUtil.printToConsole(cyberCalculator.getResult(expression));
     }
 }

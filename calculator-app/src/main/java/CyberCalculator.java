@@ -13,9 +13,21 @@ public class CyberCalculator {
         this.calculator = calculator;
     }*/
 
-    public String evaluate(String expression) {
-        return calculator.evaluateExpression(expression).toString();
+    public String getResult(String expression) {
+        return String.format("%.2f", evaluate(expression));
     }
 
+    private Object evaluate(String expression) {
+        setMultiplication();
+        setDivision();
+        return calculator.evaluateExpression(expression);
+    }
 
+    private void setMultiplication() {
+        calculator.addNewOperation("*", new Multiplication(3));
+    }
+
+    private void setDivision() {
+        calculator.addNewOperation("/", new Division(3));
+    }
 }
