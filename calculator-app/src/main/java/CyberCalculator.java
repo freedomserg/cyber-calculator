@@ -1,4 +1,3 @@
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class CyberCalculator {
 
@@ -18,7 +17,5 @@ public class CyberCalculator {
         return calculator.evaluateExpression(expression).toString();
     }
 
-    public void addOperation() {
 
-    }
 }
