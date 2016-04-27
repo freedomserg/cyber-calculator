@@ -1,5 +1,5 @@
-import CalculatorExceptions.EmptyBracketsCalculatorException;
-import CalculatorExceptions.MismatchBracketsCalculatorException;
+import calculatorExceptions.EmptyBracketsCalculatorException;
+import calculatorExceptions.MismatchBracketsCalculatorException;
 import org.junit.*;
 
 import java.util.Arrays;

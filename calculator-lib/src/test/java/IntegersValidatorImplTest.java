@@ -1,4 +1,4 @@
-import CalculatorExceptions.InvalidInputExpressionCalculatorException;
+import calculatorExceptions.InvalidInputExpressionCalculatorException;
 import org.junit.BeforeClass;
 
 public class IntegersValidatorImplTest {
