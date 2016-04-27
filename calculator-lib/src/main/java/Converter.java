@@ -23,7 +23,7 @@ public class Converter {
         for (String arg : partsOfInfixNotation) {
 
             if (!isOperator(arg)) {
-                addNumberToConvertedExpression(arg);
+                popOperatorsToConvertedExpression(arg);
 
             } else if (getSizeOfStackOfOperators() > 0) {
 
@@ -38,18 +38,32 @@ public class Converter {
                         throw new MismatchBracketsCalculatorException();
                     }
                     while (getSizeOfStackOfOperators() > 0 && !isOpeningBrace(stackOfOperators.peek())) {
-                        addNumberToConvertedExpression(stackOfOperators.pop());
+                        popOperatorsToConvertedExpression(stackOfOperators.pop());
                     }
                     removeOpeningBrace();
 
-                } else if (getOperationPriority(arg) <= getOperationPriority(stackOfOperators.peek())) {
-                    while (getSizeOfStackOfOperators() > 0 && getOperationPriority(arg) <= getOperationPriority(stackOfOperators.peek())) {
-                        addNumberToConvertedExpression(stackOfOperators.pop());
+                } else if (isRightAssociated(arg)) {
+
+                    if (isCurrentOperationPriorityLessThanTopStackOperationPriority(arg)) {
+                        while (getSizeOfStackOfOperators() > 0 &&
+                                isCurrentOperationPriorityLessThanTopStackOperationPriority(arg)) {
+                            popOperatorsToConvertedExpression(stackOfOperators.pop());
+                        }
+                        stackOfOperators.push(arg);
+                    }  else {
+                        stackOfOperators.push(arg);
                     }
-                    stackOfOperators.push(arg);
 
                 } else {
-                    stackOfOperators.push(arg);
+                    if (isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(arg)) {
+                        while (getSizeOfStackOfOperators() > 0 &&
+                                isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(arg)) {
+                            popOperatorsToConvertedExpression(stackOfOperators.pop());
+                        }
+                        stackOfOperators.push(arg);
+                    }  else {
+                        stackOfOperators.push(arg);
+                    }
                 }
 
             } else {
@@ -61,34 +75,46 @@ public class Converter {
             if (stackOfOperators.contains("(")) {
                 throw new MismatchBracketsCalculatorException();
             }
-            addNumberToConvertedExpression(stackOfOperators.pop());
+            popOperatorsToConvertedExpression(stackOfOperators.pop());
         }
 
         return expressionInPostfixNotation;
     }
 
-    private boolean isClosingBrace(String part) {
-        return ")".equals(part);
+    private boolean isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(String arg) {
+        return getOperationPriority(arg) <= getOperationPriority(stackOfOperators.peek());
+    }
+
+    private boolean isCurrentOperationPriorityLessThanTopStackOperationPriority(String arg) {
+        return getOperationPriority(arg) < getOperationPriority(stackOfOperators.peek());
+    }
+
+    private boolean isRightAssociated(String arg) {
+        return operations.getOperation(arg) instanceof RightAssociated;
+    }
+
+    private boolean isClosingBrace(String arg) {
+        return ")".equals(arg);
     }
 
     private void removeOpeningBrace() {
         stackOfOperators.removeFirst();
     }
 
-    private boolean isOpeningBrace(String part) {
-        return "(".equals(part);
+    private boolean isOpeningBrace(String arg) {
+        return "(".equals(arg);
     }
 
     private int getSizeOfStackOfOperators() {
         return stackOfOperators.size();
     }
 
-    private void addNumberToConvertedExpression(String part) {
-        expressionInPostfixNotation.add(part);
+    private void popOperatorsToConvertedExpression(String operator) {
+        expressionInPostfixNotation.add(operator);
     }
 
-    private boolean isOperator(String part) {
-        return operations.containsOperation(part);
+    private boolean isOperator(String arg) {
+        return operations.containsOperation(arg);
     }
 
     private Integer getOperationPriority(String operationLiteral) {

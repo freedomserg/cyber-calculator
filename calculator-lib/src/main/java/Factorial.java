@@ -1,6 +1,6 @@
 import calculatorExceptions.UnsupportedOperationCalculatorException;
 
-public class Factorial extends UnaryOperation {
+public class Factorial extends UnaryOperation implements RightAssociated {
 
     public Factorial(int priority) {
         super(priority);

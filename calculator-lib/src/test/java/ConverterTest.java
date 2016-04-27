@@ -5,15 +5,32 @@ import org.junit.*;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class ConverterTest {
-    String infixNotation;
-    static ExecutedCalculatorOperations doublesOperations;
+    private String infixNotation;
+    private static ExecutedCalculatorOperations doublesOperations;
+    private static ExecutedCalculatorOperations integersOperations;
 
     @BeforeClass
     public static void initDoublesExecutedOperations() {
         doublesOperations = new ExecutedCalculatorOperations();
         doublesOperations.addOperation("+", new Addition(1));
         doublesOperations.addOperation("-", new Subtraction(1));
+        doublesOperations.addOperation("sqr", new Squaring(3));
+        doublesOperations.addOperation("sqrt", new SquareRoot(3));
+        doublesOperations.addOperation("ln", new NaturalLogarithm(3));
+    }
+
+    @BeforeClass
+    public static void initIntegersExecutedOperations() {
+        integersOperations = new ExecutedCalculatorOperations();
+        integersOperations.addOperation("+", new Addition(1));
+        integersOperations.addOperation("-", new Subtraction(1));
+        integersOperations.addOperation("sqr", new Squaring(3));
+        integersOperations.addOperation("sqrt", new SquareRoot(3));
+        integersOperations.addOperation("ln", new NaturalLogarithm(3));
+        integersOperations.addOperation("!", new Factorial(3));
     }
 
     @org.junit.Test
@@ -21,7 +38,7 @@ public class ConverterTest {
         infixNotation = "1.5 + 02.22";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
         List<String> expected = Arrays.asList("1.5", "02.22", "+");
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @org.junit.Test
@@ -29,7 +46,7 @@ public class ConverterTest {
         infixNotation = "5.197 - ( ( 74.1 - 11.33 ) + 125.48 )";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
         List<String> expected = Arrays.asList("5.197", "74.1", "11.33", "-", "125.48", "+", "-");
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @org.junit.Test(expected = EmptyBracketsCalculatorException.class)
@@ -42,6 +59,22 @@ public class ConverterTest {
     public void testMismatchBracketsException() {
         infixNotation = "( 1.9 - 2 + ( 45 - 12.6 )";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
+    }
+
+    @Test
+    public void testFactorialOnIntegers() {
+        infixNotation = "5 - 3 ! + ( 5 - 2 )";
+        List<String> actual = new Converter(integersOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("5", "3", "!", "-", "5", "2", "-", "+");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFactorialWithSquaringOnIntegers() {
+        infixNotation = "10 - sqr 4 ! - 15 + 2";
+        List<String> actual = new Converter(integersOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("10", "4", "!", "sqr", "-", "15", "-", "2", "+");
+        assertEquals(expected, actual);
     }
 
 
