@@ -17,6 +17,10 @@ public abstract class AbstractCalculator<T> {
         operations = new ExecutedCalculatorOperations();
         operations.addOperation("+", new Addition(1));
         operations.addOperation("-", new Subtraction(1));
+        operations.addOperation("sqr", new Squaring(3));
+        operations.addOperation("sqrt", new SquareRoot(3));
+        operations.addOperation("ln", new NaturalLogarithm(3));
+        operations.addOperation("!", new Factorial(3));
     }
 
     public void addNewOperation(String operationLiteral, Operation operation) {
