@@ -17,7 +17,7 @@ public class CyberCalculator {
         return String.format("%.2f", evaluate(expression));
     }
 
-    private Object evaluate(String expression) {
+    Object evaluate(String expression) {
         setMultiplication();
         setDivision();
         return calculator.evaluateExpression(expression);
