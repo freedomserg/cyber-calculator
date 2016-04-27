@@ -3,7 +3,7 @@ public class IntegersCalculator extends AbstractCalculator<Integer> {
 
     @Override
     protected void initConverter() {
-        converter = new Converter<>(operations);
+        converter = new Converter(operations);
     }
 
     @Override

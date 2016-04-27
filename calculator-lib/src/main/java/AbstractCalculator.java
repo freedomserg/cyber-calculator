@@ -4,7 +4,7 @@ public abstract class AbstractCalculator<T> {
     protected ExecutedCalculatorOperations operations;
     protected Deque<T> computingStack;
     protected Validator validator;
-    protected Converter<T> converter;
+    protected Converter converter;
 
     public AbstractCalculator() {
         this.computingStack = new ArrayDeque<>();

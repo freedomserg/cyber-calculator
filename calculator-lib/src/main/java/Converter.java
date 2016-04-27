@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class Converter<T> {
+public class Converter {
     private Deque<String> stackOfOperators;
     private List<String> expressionInPostfixNotation;
     private ExecutedCalculatorOperations operations;

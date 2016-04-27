@@ -2,7 +2,7 @@ public class DoublesCalculator extends AbstractCalculator<Double> {
 
     @Override
     protected void initConverter() {
-        converter = new Converter<>(operations);
+        converter = new Converter(operations);
     }
 
     @Override
