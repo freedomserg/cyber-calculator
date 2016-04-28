@@ -77,5 +77,19 @@ public class ConverterTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testNatLogarithmOnDoubles() {
+        infixNotation = "25.5 - ln 75.5 + sqr 4.6";
+        List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("25.5", "75.5", "ln", "-", "4.6", "sqr", "+");
+        assertEquals(expected, actual);
+    }
 
+    @Test
+    public void testSqrtOnDoubles() {
+        infixNotation = "18.66 - ( sqrt 116.9 + 13.3 )";
+        List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("18.66", "116.9", "sqrt", "13.3", "+", "-");
+        assertEquals(expected, actual);
+    }
 }
