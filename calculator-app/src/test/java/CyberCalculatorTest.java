@@ -104,4 +104,20 @@ public class CyberCalculatorTest {
         double actual = new BigDecimal(result).setScale(3, RoundingMode.UP).doubleValue();
         Assert.assertThat(actual, is(-0.124));
     }
+
+    @Test
+    public void testAnotherComplexExpression() {
+        infixNotation = "2 * 3 + ( sqr 2.0 * sqrt 2.25 ) / ln 10";
+        double result = (double)calculator.evaluate(infixNotation);
+        double actual = new BigDecimal(result).setScale(1, RoundingMode.DOWN).doubleValue();
+        Assert.assertThat(actual, is(8.6));
+    }
+
+    @Test
+    public void testEnclosedExpression() {
+        infixNotation = "( sqr 2.0 * sqrt 2.25 )";
+        double result = (double)calculator.evaluate(infixNotation);
+        double actual = new BigDecimal(result).setScale(1, RoundingMode.DOWN).doubleValue();
+        Assert.assertThat(actual, is(6.0));
+    }
 }

@@ -55,6 +55,14 @@ public class ConverterTest {
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
     }
 
+    @org.junit.Test
+    public void testEnclosedExpression() {
+        infixNotation = "( 3.3 + 8.2 )";
+        List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("3.3", "8.2", "+");
+        assertEquals(expected, actual);
+    }
+
     @org.junit.Test(expected = MismatchBracketsCalculatorException.class)
     public void testMismatchBracketsException() {
         infixNotation = "( 1.9 - 2 + ( 45 - 12.6 )";

@@ -24,10 +24,10 @@ public class CyberCalculator {
     }
 
     private void setMultiplication() {
-        calculator.addNewOperation("*", new Multiplication(3));
+        calculator.addNewOperation("*", new Multiplication(2));
     }
 
     private void setDivision() {
-        calculator.addNewOperation("/", new Division(3));
+        calculator.addNewOperation("/", new Division(2));
     }
 }
