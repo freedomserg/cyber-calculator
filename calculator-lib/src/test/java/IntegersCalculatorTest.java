@@ -8,11 +8,43 @@ public class IntegersCalculatorTest {
     private String input;
     private List<String> postfixNotation;
 
-    @org.junit.Test
+    @Test
     public void testAdditionAndSubtractionOnIntegers() {
         input = "52 77 44 - + 65 -";
         postfixNotation = Arrays.asList(input.split(" "));
         int actual = new IntegersCalculator().compute(postfixNotation);
         Assert.assertThat(actual, Is.is(20));
+    }
+
+    @Test
+    public void testSquringOnIntegers() {
+        input = "3 4 sqr +";
+        postfixNotation = Arrays.asList(input.split(" "));
+        int actual = new IntegersCalculator().compute(postfixNotation);
+        Assert.assertThat(actual, Is.is(19));
+    }
+
+    @Test
+    public void testSquareRootOnIntegers() {
+        input = "64 sqrt 12 -";
+        postfixNotation = Arrays.asList(input.split(" "));
+        int actual = new IntegersCalculator().compute(postfixNotation);
+        Assert.assertThat(actual, Is.is(-4));
+    }
+
+    @Test
+    public void testNaturalLogarithmOnIntegers() {
+        input = "15 ln 3 +";
+        postfixNotation = Arrays.asList(input.split(" "));
+        int actual = new IntegersCalculator().compute(postfixNotation);
+        Assert.assertThat(actual, Is.is(5));
+    }
+
+    @Test
+    public void testFactorialOnIntegers() {
+        input = "5 3 + 3 ! -";
+        postfixNotation = Arrays.asList(input.split(" "));
+        int actual = new IntegersCalculator().compute(postfixNotation);
+        Assert.assertThat(actual, Is.is(2));
     }
 }
