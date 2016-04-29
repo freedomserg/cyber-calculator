@@ -12,19 +12,20 @@ public class DoublesValidatorImpl implements Validator {
     public void validateExpressionAndCheckAcceptableOperations(String inputExpression,
                                                                ExecutedCalculatorOperations operations) {
         String[] raw = inputExpression.split(" ");
-
         IntStream.range(0, raw.length).forEach(i -> {
             String word = raw[i];
-            if (!operations.containsOperation(word)) {
-                Matcher digitsMatcher = ONLY_DIGITS_PATTERN.matcher(word);
-                if (!digitsMatcher.matches()) {
-                    Matcher doublesMatcher = DOUBLES_PATTERN.matcher(word);
-                    if (!doublesMatcher.matches()) {
-                        throw new InvalidInputExpressionCalculatorException();
-                    }
-                }
+            if (operations.containsOperation(word)) {
+                return;
             }
+            Matcher digitsMatcher = ONLY_DIGITS_PATTERN.matcher(word);
+            if (digitsMatcher.matches()) {
+                return;
+            }
+            Matcher doublesMatcher = DOUBLES_PATTERN.matcher(word);
+            if (doublesMatcher.matches()) {
+                return;
+            }
+            throw new InvalidInputExpressionCalculatorException();
         });
-
     }
 }

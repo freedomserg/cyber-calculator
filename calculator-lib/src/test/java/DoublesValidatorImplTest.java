@@ -30,7 +30,7 @@ public class DoublesValidatorImplTest {
     }
 
     @Test
-    public void testValidateDoublesOperations() {
+    public void testValidateDoubleOperations() {
         input = "sqr 1.5 - ( sqrt 33.3 - ln 331.69 ) + 75.44";
         Validator validator = new DoublesValidatorImpl();
         validator.validateExpressionAndCheckAcceptableOperations(input, doublesOperations);

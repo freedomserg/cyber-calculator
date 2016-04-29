@@ -10,7 +10,7 @@
 
     <!--constructor-based injection-->
 <!--    <bean id="cyber-calculator" class="CyberCalculator">
-        <constructor-arg ref="doubles-calculator"/>
+        <constructor-operator ref="doubles-calculator"/>
     </bean>-->
 
     <bean id="doubles-calculator" class="DoublesCalculator"/>

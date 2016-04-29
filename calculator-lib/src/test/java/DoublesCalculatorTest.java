@@ -12,7 +12,7 @@ public class DoublesCalculatorTest {
     private List<String> postfixNotation;
 
     @Test
-    public void testAdditionOnDoubles() {
+    public void testAddition() {
         input = "11 22.0 + 0444.5 + 33.75 +";
         postfixNotation = Arrays.asList(input.split(" "));
         double actual = new DoublesCalculator().compute(postfixNotation);
@@ -21,7 +21,7 @@ public class DoublesCalculatorTest {
 
 
     @Test
-    public void testSubtractionOnDoubles() {
+    public void testSubtraction() {
         input = "75.2 33.7 12.555 - 12.95 - 14.75 - -";
         postfixNotation = Arrays.asList(input.split(" "));
         double actual = new DoublesCalculator().compute(postfixNotation);
@@ -29,7 +29,7 @@ public class DoublesCalculatorTest {
     }
 
     @Test
-    public void testSquaringOnDoubles() {
+    public void testSquaring() {
         input = "1.5 sqr";
         postfixNotation = Arrays.asList(input.split(" "));
         double actual = new DoublesCalculator().compute(postfixNotation);
@@ -37,7 +37,7 @@ public class DoublesCalculatorTest {
     }
 
     @Test
-    public void testSquareRootOnDoubles() {
+    public void testSquareRoot() {
         input = "100.0 sqrt";
         postfixNotation = Arrays.asList(input.split(" "));
         double actual = new DoublesCalculator().compute(postfixNotation);
@@ -45,7 +45,7 @@ public class DoublesCalculatorTest {
     }
 
     @Test
-    public void testNaturalLogarithmOnDoubles() {
+    public void testNaturalLogarithm() {
         input = "33.3 ln";
         postfixNotation = Arrays.asList(input.split(" "));
         double result = new DoublesCalculator().compute(postfixNotation);

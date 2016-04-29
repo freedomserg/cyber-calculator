@@ -1,8 +1,9 @@
 import calculatorExceptions.UnsupportedOperationCalculatorException;
+import org.junit.Test;
 
 public class BraceTest {
 
-    @org.junit.Test(expected = UnsupportedOperationCalculatorException.class)
+    @Test(expected = UnsupportedOperationCalculatorException.class)
     public void testBrace() {
         IntegerArguments args = new IntegerArguments();
         args.setFirstArg(25);

@@ -33,7 +33,7 @@ public class ConverterTest {
         integersOperations.addOperation("!", new Factorial(3));
     }
 
-    @org.junit.Test
+    @Test
     public void testConvertingWithAdditionOnDoubles() {
         infixNotation = "1.5 + 02.22";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
@@ -41,7 +41,7 @@ public class ConverterTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.Test
+    @Test
     public void testConvertingWithAdditionSubtractionBracesOnDoubles() {
         infixNotation = "5.197 - ( ( 74.1 - 11.33 ) + 125.48 )";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
@@ -49,13 +49,13 @@ public class ConverterTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.Test(expected = EmptyBracketsCalculatorException.class)
+    @Test(expected = EmptyBracketsCalculatorException.class)
     public void testEmptyBracketsException() {
         infixNotation = "1 + ( ) - 2";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
     }
 
-    @org.junit.Test
+    @Test
     public void testEnclosedExpression() {
         infixNotation = "( 3.3 + 8.2 )";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
@@ -63,7 +63,7 @@ public class ConverterTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.Test(expected = MismatchBracketsCalculatorException.class)
+    @Test(expected = MismatchBracketsCalculatorException.class)
     public void testMismatchBracketsException() {
         infixNotation = "( 1.9 - 2 + ( 45 - 12.6 )";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);

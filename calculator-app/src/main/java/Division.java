@@ -1,6 +1,7 @@
 import calculatorExceptions.DivisionByZeroCalculatorException;
 
 public class Division extends BinaryOperation {
+
     public Division(int priority) {
         super(priority);
     }

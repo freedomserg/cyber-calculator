@@ -13,12 +13,14 @@ public class IntegersValidatorImpl implements Validator {
         String[] raw = inputExpression.split(" ");
         IntStream.range(0, raw.length).forEach(i -> {
             String word = raw[i];
-            if (!operations.containsOperation(word)) {
-                Matcher digitsMatcher = ONLY_DIGITS_PATTERN.matcher(word);
-                if (!digitsMatcher.matches()) {
-                    throw new InvalidInputExpressionCalculatorException();
-                }
+            if (operations.containsOperation(word)) {
+                return;
             }
+            Matcher digitsMatcher = ONLY_DIGITS_PATTERN.matcher(word);
+            if (digitsMatcher.matches()) {
+                return;
+            }
+            throw new InvalidInputExpressionCalculatorException();
         });
     }
 }

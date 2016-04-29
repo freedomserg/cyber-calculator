@@ -9,7 +9,7 @@ public class IntegersCalculatorTest {
     private List<String> postfixNotation;
 
     @Test
-    public void testAdditionAndSubtractionOnIntegers() {
+    public void testAdditionAndSubtraction() {
         input = "52 77 44 - + 65 -";
         postfixNotation = Arrays.asList(input.split(" "));
         int actual = new IntegersCalculator().compute(postfixNotation);
@@ -17,7 +17,7 @@ public class IntegersCalculatorTest {
     }
 
     @Test
-    public void testSquringOnIntegers() {
+    public void testSquaring() {
         input = "3 4 sqr +";
         postfixNotation = Arrays.asList(input.split(" "));
         int actual = new IntegersCalculator().compute(postfixNotation);
@@ -25,7 +25,7 @@ public class IntegersCalculatorTest {
     }
 
     @Test
-    public void testSquareRootOnIntegers() {
+    public void testSquareRoot() {
         input = "64 sqrt 12 -";
         postfixNotation = Arrays.asList(input.split(" "));
         int actual = new IntegersCalculator().compute(postfixNotation);
@@ -33,7 +33,7 @@ public class IntegersCalculatorTest {
     }
 
     @Test
-    public void testNaturalLogarithmOnIntegers() {
+    public void testNaturalLogarithm() {
         input = "15 ln 3 +";
         postfixNotation = Arrays.asList(input.split(" "));
         int actual = new IntegersCalculator().compute(postfixNotation);
@@ -41,7 +41,7 @@ public class IntegersCalculatorTest {
     }
 
     @Test
-    public void testFactorialOnIntegers() {
+    public void testFactorial() {
         input = "5 3 + 3 ! -";
         postfixNotation = Arrays.asList(input.split(" "));
         int actual = new IntegersCalculator().compute(postfixNotation);

@@ -22,52 +22,48 @@ public class Converter {
 
         for (String arg : partsOfInfixNotation) {
 
-            if (!isOperator(arg)) {
-                popOperatorsToConvertedExpression(arg);
+            if (isOperator(arg)) {
+                if (getSizeOfStackOfOperators() > 0) {
 
-            } else if (getSizeOfStackOfOperators() > 0) {
-
-                if (isOpeningBrace(arg)) {
-                    stackOfOperators.push(arg);
-
-                } else if (isClosingBrace(arg)) {
-                    if (isOpeningBrace(stackOfOperators.peek())) {
-                        throw new EmptyBracketsCalculatorException();
-                    }
-                    if (!stackOfOperators.contains("(")) {
-                        throw new MismatchBracketsCalculatorException();
-                    }
-                    while (getSizeOfStackOfOperators() > 0 && !isOpeningBrace(stackOfOperators.peek())) {
-                        popOperatorsToConvertedExpression(stackOfOperators.pop());
-                    }
-                    removeOpeningBrace();
-
-                } else if (isRightAssociated(arg)) {
-
-                    if (isCurrentOperationPriorityLessThanTopStackOperationPriority(arg)) {
-                        while (getSizeOfStackOfOperators() > 0 &&
-                                isCurrentOperationPriorityLessThanTopStackOperationPriority(arg)) {
-                            popOperatorsToConvertedExpression(stackOfOperators.pop());
+                    if (isOpeningBrace(arg)) {
+                        stackOfOperators.push(arg);
+                    } else if (isClosingBrace(arg)) {
+                        if (isOpeningBrace(stackOfOperators.peek())) {
+                            throw new EmptyBracketsCalculatorException();
                         }
-                        stackOfOperators.push(arg);
-                    }  else {
-                        stackOfOperators.push(arg);
+                        if (!stackOfOperators.contains("(")) {
+                            throw new MismatchBracketsCalculatorException();
+                        }
+                        while (getSizeOfStackOfOperators() > 0 && !isOpeningBrace(stackOfOperators.peek())) {
+                            popOperatorToConvertedExpression(stackOfOperators.pop());
+                        }
+                        removeOpeningBrace();
+                    } else if (isRightAssociated(arg)) {
+                        if (isCurrentOperationPriorityLessThanTopStackOperationPriority(arg)) {
+                            while (getSizeOfStackOfOperators() > 0 &&
+                                    isCurrentOperationPriorityLessThanTopStackOperationPriority(arg)) {
+                                popOperatorToConvertedExpression(stackOfOperators.pop());
+                            }
+                            stackOfOperators.push(arg);
+                        }  else {
+                            stackOfOperators.push(arg);
+                        }
+                    } else {
+                        if (isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(arg)) {
+                            while (getSizeOfStackOfOperators() > 0 &&
+                                    isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(arg)) {
+                                popOperatorToConvertedExpression(stackOfOperators.pop());
+                            }
+                            stackOfOperators.push(arg);
+                        }  else {
+                            stackOfOperators.push(arg);
+                        }
                     }
-
                 } else {
-                    if (isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(arg)) {
-                        while (getSizeOfStackOfOperators() > 0 &&
-                                isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(arg)) {
-                            popOperatorsToConvertedExpression(stackOfOperators.pop());
-                        }
-                        stackOfOperators.push(arg);
-                    }  else {
-                        stackOfOperators.push(arg);
-                    }
+                    stackOfOperators.push(arg);
                 }
-
             } else {
-                stackOfOperators.push(arg);
+                popOperatorToConvertedExpression(arg);
             }
         }
 
@@ -75,49 +71,50 @@ public class Converter {
             if (stackOfOperators.contains("(")) {
                 throw new MismatchBracketsCalculatorException();
             }
-            popOperatorsToConvertedExpression(stackOfOperators.pop());
+            popOperatorToConvertedExpression(stackOfOperators.pop());
         }
 
         return expressionInPostfixNotation;
     }
 
-    private boolean isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(String arg) {
-        return getOperationPriority(arg) <= getOperationPriority(stackOfOperators.peek());
-    }
 
-    private boolean isCurrentOperationPriorityLessThanTopStackOperationPriority(String arg) {
-        return getOperationPriority(arg) < getOperationPriority(stackOfOperators.peek());
-    }
-
-    private boolean isRightAssociated(String arg) {
-        return operations.getOperation(arg) instanceof RightAssociated;
-    }
-
-    private boolean isClosingBrace(String arg) {
-        return ")".equals(arg);
-    }
-
-    private void removeOpeningBrace() {
-        stackOfOperators.removeFirst();
-    }
-
-    private boolean isOpeningBrace(String arg) {
-        return "(".equals(arg);
+    private boolean isOperator(String arg) {
+        return operations.containsOperation(arg);
     }
 
     private int getSizeOfStackOfOperators() {
         return stackOfOperators.size();
     }
 
-    private void popOperatorsToConvertedExpression(String operator) {
+    private boolean isOpeningBrace(String arg) {
+        return "(".equals(arg);
+    }
+
+    private boolean isClosingBrace(String arg) {
+        return ")".equals(arg);
+    }
+
+    private void popOperatorToConvertedExpression(String operator) {
         expressionInPostfixNotation.add(operator);
     }
 
-    private boolean isOperator(String arg) {
-        return operations.containsOperation(arg);
+    private void removeOpeningBrace() {
+        stackOfOperators.removeFirst();
     }
 
-    private Integer getOperationPriority(String operationLiteral) {
-        return operations.getOperation(operationLiteral).getPriority();
+    private boolean isRightAssociated(String operator) {
+        return operations.getOperation(operator) instanceof RightAssociated;
+    }
+
+    private boolean isCurrentOperationPriorityLessThanTopStackOperationPriority(String operator) {
+        return getOperationPriority(operator) < getOperationPriority(stackOfOperators.peek());
+    }
+
+    private boolean isCurrentOperationPriorityLessOrEqualsTopStackOperationPriority(String operator) {
+        return getOperationPriority(operator) <= getOperationPriority(stackOfOperators.peek());
+    }
+
+    private Integer getOperationPriority(String operator) {
+        return operations.getOperation(operator).getPriority();
     }
 }

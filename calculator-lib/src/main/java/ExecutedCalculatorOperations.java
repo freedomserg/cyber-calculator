@@ -10,15 +10,15 @@ public class ExecutedCalculatorOperations {
         operations.put(")", new Brace(0));
     }
 
-    public void addOperation(String operationLiteral, Operation operation) {
-        operations.put(operationLiteral, operation);
+    public void addOperation(String operator, Operation operation) {
+        operations.put(operator, operation);
     }
 
-    public Operation getOperation(String keyLiteral) {
-        return operations.get(keyLiteral);
+    public Operation getOperation(String operator) {
+        return operations.get(operator);
     }
 
-    public boolean containsOperation(String keyLiteral) {
-        return operations.containsKey(keyLiteral);
+    public boolean containsOperation(String operator) {
+        return operations.containsKey(operator);
     }
 }
