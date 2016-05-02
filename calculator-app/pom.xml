@@ -5,17 +5,26 @@
     <parent>
         <artifactId>cyber-calculator</artifactId>
         <groupId>net.syrotskyi.projects</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.9</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>calculator-app</artifactId>
     <packaging>jar</packaging>
 
+
+    <properties>
+        <!-- Versions -->
+        <spring.version>4.2.5.RELEASE</spring.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <aspectj.version>1.8.9</aspectj.version>
+        <calculator-lib.version>0.9</calculator-lib.version>
+    </properties>
+
     <build>
 
+        <!--maven-assembly-plugin-->
         <plugins>
-
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -37,26 +46,46 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
 
     </build>
 
     <dependencies>
 
+        <!-- Spring framework -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!--AspectJ-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+
+        <!--calculator-lib-->
         <dependency>
             <groupId>net.syrotskyi.projects</groupId>
             <artifactId>calculator-lib</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${calculator-lib.version}</version>
         </dependency>
 
     </dependencies>
-
 
 </project>
