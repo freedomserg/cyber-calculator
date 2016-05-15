@@ -79,4 +79,13 @@ public class DoublesCalculatorTest {
         double actual = new BigDecimal(result).setScale(2, RoundingMode.DOWN).doubleValue();
         Assert.assertThat(actual, is(-52.28));
     }
+
+    @Test
+    public void testPowering() {
+        input = "3.15 4.1 ^";
+        postfixNotation = Arrays.asList(input.split(" "));
+        double result = new DoublesCalculator().compute(postfixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
+        Assert.assertThat(actual, is(110.43));
+    }
 }

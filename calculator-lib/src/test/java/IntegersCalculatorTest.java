@@ -63,4 +63,12 @@ public class IntegersCalculatorTest {
         int actual = new IntegersCalculator().compute(postfixNotation);
         Assert.assertThat(actual, Is.is(2));
     }
+
+    @Test
+    public void testPowering() {
+        input = "5 4 + 3 ^";
+        postfixNotation = Arrays.asList(input.split(" "));
+        int actual = new IntegersCalculator().compute(postfixNotation);
+        Assert.assertThat(actual, Is.is(729));
+    }
 }

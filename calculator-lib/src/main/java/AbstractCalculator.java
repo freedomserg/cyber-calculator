@@ -21,8 +21,9 @@ public abstract class AbstractCalculator<T> {
         operations.addOperation("/", new Division(2));
         operations.addOperation("sqr", new Squaring(3));
         operations.addOperation("sqrt", new SquareRoot(3));
-        operations.addOperation("ln", new NaturalLogarithm(3));
-        operations.addOperation("!", new Factorial(3));
+        operations.addOperation("^", new Powering(3));
+        operations.addOperation("ln", new NaturalLogarithm(4));
+        operations.addOperation("!", new Factorial(4));
     }
 
     public void addNewOperation(String operationLiteral, Operation operation) {

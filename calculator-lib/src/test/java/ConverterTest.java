@@ -21,7 +21,8 @@ public class ConverterTest {
         doublesOperations.addOperation("/", new Division(2));
         doublesOperations.addOperation("sqr", new Squaring(3));
         doublesOperations.addOperation("sqrt", new SquareRoot(3));
-        doublesOperations.addOperation("ln", new NaturalLogarithm(3));
+        doublesOperations.addOperation("^", new Powering(3));
+        doublesOperations.addOperation("ln", new NaturalLogarithm(4));
     }
 
     @BeforeClass
@@ -33,8 +34,9 @@ public class ConverterTest {
         integersOperations.addOperation("/", new Division(2));
         integersOperations.addOperation("sqr", new Squaring(3));
         integersOperations.addOperation("sqrt", new SquareRoot(3));
-        integersOperations.addOperation("ln", new NaturalLogarithm(3));
-        integersOperations.addOperation("!", new Factorial(3));
+        integersOperations.addOperation("^", new Powering(3));
+        integersOperations.addOperation("ln", new NaturalLogarithm(4));
+        integersOperations.addOperation("!", new Factorial(4));
     }
 
     @Test
@@ -127,6 +129,14 @@ public class ConverterTest {
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
         List<String> expected = Arrays.asList("36.3", "sqrt", "5.2", "sqr", "/", "14.2", "ln", "*", "99.7",
                  "13.7", "10.0", "-", "*", "+");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPoweringOnIntegers() {
+        infixNotation = "50 / sqr ( 2 ^ 3 )";
+        List<String> actual = new Converter(integersOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("50", "2", "3", "^", "sqr", "/");
         assertEquals(expected, actual);
     }
 }
