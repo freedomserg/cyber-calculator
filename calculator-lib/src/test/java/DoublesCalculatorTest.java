@@ -88,4 +88,22 @@ public class DoublesCalculatorTest {
         double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
         Assert.assertThat(actual, is(110.43));
     }
+
+    @Test
+    public void testRooting() {
+        input = "3.25 1.9 root";
+        postfixNotation = Arrays.asList(input.split(" "));
+        double result = new DoublesCalculator().compute(postfixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
+        Assert.assertThat(actual, is(1.86));
+    }
+
+    @Test
+    public void testAllDoubleOperations() {
+        input = "1.5 sqr 10.5 2.3 3.5 ^ - / 2.25 3 root 1.5 + 16.75 sqrt - * 147 ln +";
+        postfixNotation = Arrays.asList(input.split(" "));
+        double result = new DoublesCalculator().compute(postfixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.DOWN).doubleValue();
+        Assert.assertThat(actual, is(5.35));
+    }
 }

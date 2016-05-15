@@ -71,4 +71,12 @@ public class IntegersCalculatorTest {
         int actual = new IntegersCalculator().compute(postfixNotation);
         Assert.assertThat(actual, Is.is(729));
     }
+
+    @Test
+    public void testRooting() {
+        input = "64 6 root";
+        postfixNotation = Arrays.asList(input.split(" "));
+        int actual = new IntegersCalculator().compute(postfixNotation);
+        Assert.assertThat(actual, Is.is(2));
+    }
 }

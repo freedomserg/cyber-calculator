@@ -22,6 +22,7 @@ public abstract class AbstractCalculator<T> {
         operations.addOperation("sqr", new Squaring(3));
         operations.addOperation("sqrt", new SquareRoot(3));
         operations.addOperation("^", new Powering(3));
+        operations.addOperation("root", new Rooting(3));
         operations.addOperation("ln", new NaturalLogarithm(4));
         operations.addOperation("!", new Factorial(4));
     }

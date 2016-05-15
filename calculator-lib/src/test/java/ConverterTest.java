@@ -22,6 +22,7 @@ public class ConverterTest {
         doublesOperations.addOperation("sqr", new Squaring(3));
         doublesOperations.addOperation("sqrt", new SquareRoot(3));
         doublesOperations.addOperation("^", new Powering(3));
+        doublesOperations.addOperation("root", new Rooting(3));
         doublesOperations.addOperation("ln", new NaturalLogarithm(4));
     }
 
@@ -35,6 +36,7 @@ public class ConverterTest {
         integersOperations.addOperation("sqr", new Squaring(3));
         integersOperations.addOperation("sqrt", new SquareRoot(3));
         integersOperations.addOperation("^", new Powering(3));
+        integersOperations.addOperation("root", new Rooting(3));
         integersOperations.addOperation("ln", new NaturalLogarithm(4));
         integersOperations.addOperation("!", new Factorial(4));
     }
@@ -137,6 +139,14 @@ public class ConverterTest {
         infixNotation = "50 / sqr ( 2 ^ 3 )";
         List<String> actual = new Converter(integersOperations).convertToPostfixNotation(infixNotation);
         List<String> expected = Arrays.asList("50", "2", "3", "^", "sqr", "/");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testRootingOnDoubles() {
+        infixNotation = "1.2 ^ 4.1 root 3.7";
+        List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("1.2", "4.1", "^", "3.7", "root");
         assertEquals(expected, actual);
     }
 }
