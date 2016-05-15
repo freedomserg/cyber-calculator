@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class CosTest {
 
     @Test
-    public void testDoubleSquaring() {
+    public void testCos() {
         Cos cos = new Cos(4);
         DoubleArguments args = new DoubleArguments();
         args.setFirstArg(200.0);

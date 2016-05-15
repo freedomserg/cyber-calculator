@@ -13,10 +13,15 @@ public class CyberCalculator {
 
     Object evaluate(String expression) {
         setCos();
+        setSin();
         return calculator.evaluateExpression(expression);
     }
 
     private void setCos() {
         calculator.addNewOperation("cos", new Cos(4));
+    }
+
+    private void setSin() {
+        calculator.addNewOperation("sin", new Sin(4));
     }
 }

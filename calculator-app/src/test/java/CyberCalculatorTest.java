@@ -128,4 +128,12 @@ public class CyberCalculatorTest {
         double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
         Assert.assertThat(actual, is(0.26));
     }
+
+    @Test
+    public void testSin() {
+        infixNotation = "sin 175";
+        double result = (double)calculator.evaluate(infixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
+        Assert.assertThat(actual, is(0.09));
+    }
 }
