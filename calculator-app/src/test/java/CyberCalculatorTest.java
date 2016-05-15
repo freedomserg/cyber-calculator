@@ -106,14 +106,6 @@ public class CyberCalculatorTest {
     }
 
     @Test
-    public void testAnotherComplexExpression() {
-        infixNotation = "2 * 3 + ( sqr 2.0 * sqrt 2.25 ) / ln 10 - 9.3 ^ ( 4.6 root 2.7 )";
-        double result = (double)calculator.evaluate(infixNotation);
-        double actual = new BigDecimal(result).setScale(2, RoundingMode.DOWN).doubleValue();
-        Assert.assertThat(actual, is(-42.01));
-    }
-
-    @Test
     public void testEnclosedExpression() {
         infixNotation = "( sqr 2.0 * sqrt 2.25 )";
         double result = (double)calculator.evaluate(infixNotation);
@@ -135,5 +127,22 @@ public class CyberCalculatorTest {
         double result = (double)calculator.evaluate(infixNotation);
         double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
         Assert.assertThat(actual, is(0.09));
+    }
+
+    @Test
+    public void testTan() {
+        infixNotation = "tan 300";
+        double result = (double)calculator.evaluate(infixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.DOWN).doubleValue();
+        Assert.assertThat(actual, is(-1.73));
+    }
+
+    @Test
+    public void testAllOperations() {
+        infixNotation = "cos 45 + 2 * 3 + ( sqr 2.0 * sqrt 2.25 ) / ln 10 + tan 60 - 9.3 ^ ( 4.6 root 2.7 ) - " +
+                "sin 25";
+        double result = (double)calculator.evaluate(infixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.DOWN).doubleValue();
+        Assert.assertThat(actual, is(-40.0));
     }
 }

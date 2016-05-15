@@ -14,6 +14,7 @@ public class CyberCalculator {
     Object evaluate(String expression) {
         setCos();
         setSin();
+        setTan();
         return calculator.evaluateExpression(expression);
     }
 
@@ -23,5 +24,9 @@ public class CyberCalculator {
 
     private void setSin() {
         calculator.addNewOperation("sin", new Sin(4));
+    }
+
+    private void setTan() {
+        calculator.addNewOperation("tan", new Tan(4));
     }
 }
