@@ -40,4 +40,5 @@ public class MultiplicationTest {
         float actual = new Multiplication(2).getResult(args);
         Assert.assertThat(actual, is(7.26f));
     }
+
 }

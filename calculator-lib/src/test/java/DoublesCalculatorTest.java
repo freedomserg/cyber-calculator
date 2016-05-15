@@ -52,4 +52,13 @@ public class DoublesCalculatorTest {
         double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
         Assert.assertThat(actual, is(3.51));
     }
+
+    @Test
+    public void testMultiplication() {
+        input = "2.5 2.0 *";
+        postfixNotation = Arrays.asList(input.split(" "));
+        double result = new DoublesCalculator().compute(postfixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
+        Assert.assertThat(actual, is(5.0));
+    }
 }

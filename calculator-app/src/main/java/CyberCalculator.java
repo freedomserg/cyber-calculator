@@ -18,13 +18,8 @@ public class CyberCalculator {
     }
 
     Object evaluate(String expression) {
-        setMultiplication();
         setDivision();
         return calculator.evaluateExpression(expression);
-    }
-
-    private void setMultiplication() {
-        calculator.addNewOperation("*", new Multiplication(2));
     }
 
     private void setDivision() {

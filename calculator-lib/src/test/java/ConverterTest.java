@@ -17,6 +17,7 @@ public class ConverterTest {
         doublesOperations = new ExecutedCalculatorOperations();
         doublesOperations.addOperation("+", new Addition(1));
         doublesOperations.addOperation("-", new Subtraction(1));
+        doublesOperations.addOperation("*", new Multiplication(2));
         doublesOperations.addOperation("sqr", new Squaring(3));
         doublesOperations.addOperation("sqrt", new SquareRoot(3));
         doublesOperations.addOperation("ln", new NaturalLogarithm(3));
@@ -27,6 +28,7 @@ public class ConverterTest {
         integersOperations = new ExecutedCalculatorOperations();
         integersOperations.addOperation("+", new Addition(1));
         integersOperations.addOperation("-", new Subtraction(1));
+        integersOperations.addOperation("*", new Multiplication(2));
         integersOperations.addOperation("sqr", new Squaring(3));
         integersOperations.addOperation("sqrt", new SquareRoot(3));
         integersOperations.addOperation("ln", new NaturalLogarithm(3));
@@ -98,6 +100,14 @@ public class ConverterTest {
         infixNotation = "18.66 - ( sqrt 116.9 + 13.3 )";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
         List<String> expected = Arrays.asList("18.66", "116.9", "sqrt", "13.3", "+", "-");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testMultyplicationOnDoubles() {
+        infixNotation = "2.5 + ( 10.0 * 1.5 )";
+        List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("2.5", "10.0", "1.5", "*", "+");
         assertEquals(expected, actual);
     }
 }
