@@ -18,6 +18,7 @@ public abstract class AbstractCalculator<T> {
         operations.addOperation("+", new Addition(1));
         operations.addOperation("-", new Subtraction(1));
         operations.addOperation("*", new Multiplication(2));
+        operations.addOperation("/", new Division(2));
         operations.addOperation("sqr", new Squaring(3));
         operations.addOperation("sqrt", new SquareRoot(3));
         operations.addOperation("ln", new NaturalLogarithm(3));

@@ -61,4 +61,22 @@ public class DoublesCalculatorTest {
         double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
         Assert.assertThat(actual, is(5.0));
     }
+
+    @Test
+    public void testDivision() {
+        input = "100.0 5.0 /";
+        postfixNotation = Arrays.asList(input.split(" "));
+        double result = new DoublesCalculator().compute(postfixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
+        Assert.assertThat(actual, is(20.0));
+    }
+
+    @Test
+    public void testDivMultSqrtSqrLn() {
+        input = "12.5 5.5 / 7.89 5.1 sqr 25.0 ln sqrt * + -";
+        postfixNotation = Arrays.asList(input.split(" "));
+        double result = new DoublesCalculator().compute(postfixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.DOWN).doubleValue();
+        Assert.assertThat(actual, is(-52.28));
+    }
 }

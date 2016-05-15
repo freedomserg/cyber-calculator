@@ -18,6 +18,7 @@ public class ConverterTest {
         doublesOperations.addOperation("+", new Addition(1));
         doublesOperations.addOperation("-", new Subtraction(1));
         doublesOperations.addOperation("*", new Multiplication(2));
+        doublesOperations.addOperation("/", new Division(2));
         doublesOperations.addOperation("sqr", new Squaring(3));
         doublesOperations.addOperation("sqrt", new SquareRoot(3));
         doublesOperations.addOperation("ln", new NaturalLogarithm(3));
@@ -29,6 +30,7 @@ public class ConverterTest {
         integersOperations.addOperation("+", new Addition(1));
         integersOperations.addOperation("-", new Subtraction(1));
         integersOperations.addOperation("*", new Multiplication(2));
+        integersOperations.addOperation("/", new Division(2));
         integersOperations.addOperation("sqr", new Squaring(3));
         integersOperations.addOperation("sqrt", new SquareRoot(3));
         integersOperations.addOperation("ln", new NaturalLogarithm(3));
@@ -104,10 +106,27 @@ public class ConverterTest {
     }
 
     @Test
-    public void testMultyplicationOnDoubles() {
+    public void testMultiplicationOnDoubles() {
         infixNotation = "2.5 + ( 10.0 * 1.5 )";
         List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
         List<String> expected = Arrays.asList("2.5", "10.0", "1.5", "*", "+");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDivisionOnDoubles() {
+        infixNotation = "100.0 / ( 2.2 - 1.5 )";
+        List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("100.0", "2.2", "1.5", "-", "/");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testMultDivOnDoublesInComplexExpression() {
+        infixNotation = "sqrt 36.3 / sqr 5.2 * ln 14.2 + 99.7 * ( 13.7 - 10.0 )";
+        List<String> actual = new Converter(doublesOperations).convertToPostfixNotation(infixNotation);
+        List<String> expected = Arrays.asList("36.3", "sqrt", "5.2", "sqr", "/", "14.2", "ln", "*", "99.7",
+                 "13.7", "10.0", "-", "*", "+");
         assertEquals(expected, actual);
     }
 }

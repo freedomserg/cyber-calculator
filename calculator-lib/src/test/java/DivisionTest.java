@@ -40,4 +40,5 @@ public class DivisionTest {
         float actual = new Division(2).getResult(args);
         Assert.assertThat(actual, is(5.0f));
     }
+
 }

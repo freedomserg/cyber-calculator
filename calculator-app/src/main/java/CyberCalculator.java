@@ -18,11 +18,6 @@ public class CyberCalculator {
     }
 
     Object evaluate(String expression) {
-        setDivision();
         return calculator.evaluateExpression(expression);
-    }
-
-    private void setDivision() {
-        calculator.addNewOperation("/", new Division(2));
     }
 }
