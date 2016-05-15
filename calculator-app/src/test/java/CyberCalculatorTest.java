@@ -107,10 +107,10 @@ public class CyberCalculatorTest {
 
     @Test
     public void testAnotherComplexExpression() {
-        infixNotation = "2 * 3 + ( sqr 2.0 * sqrt 2.25 ) / ln 10";
+        infixNotation = "2 * 3 + ( sqr 2.0 * sqrt 2.25 ) / ln 10 - 9.3 ^ ( 4.6 root 2.7 )";
         double result = (double)calculator.evaluate(infixNotation);
-        double actual = new BigDecimal(result).setScale(1, RoundingMode.DOWN).doubleValue();
-        Assert.assertThat(actual, is(8.6));
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.DOWN).doubleValue();
+        Assert.assertThat(actual, is(-42.01));
     }
 
     @Test
@@ -119,5 +119,13 @@ public class CyberCalculatorTest {
         double result = (double)calculator.evaluate(infixNotation);
         double actual = new BigDecimal(result).setScale(1, RoundingMode.DOWN).doubleValue();
         Assert.assertThat(actual, is(6.0));
+    }
+
+    @Test
+    public void testCos() {
+        infixNotation = "cos 75";
+        double result = (double)calculator.evaluate(infixNotation);
+        double actual = new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
+        Assert.assertThat(actual, is(0.26));
     }
 }
