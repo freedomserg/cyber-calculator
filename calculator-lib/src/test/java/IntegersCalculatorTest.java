@@ -47,4 +47,20 @@ public class IntegersCalculatorTest {
         int actual = new IntegersCalculator().compute(postfixNotation);
         Assert.assertThat(actual, Is.is(2));
     }
+
+    @Test
+    public void testMultiplication() {
+        input = "2 3 *";
+        postfixNotation = Arrays.asList(input.split(" "));
+        int actual = new IntegersCalculator().compute(postfixNotation);
+        Assert.assertThat(actual, Is.is(6));
+    }
+
+    @Test
+    public void testDivision() {
+        input = "6 3 * 9 /";
+        postfixNotation = Arrays.asList(input.split(" "));
+        int actual = new IntegersCalculator().compute(postfixNotation);
+        Assert.assertThat(actual, Is.is(2));
+    }
 }
