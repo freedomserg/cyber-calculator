@@ -2,8 +2,6 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
-
 
 public class jdbcExpressionDAO implements ExpressionDAO {
 
@@ -11,7 +9,7 @@ public class jdbcExpressionDAO implements ExpressionDAO {
     private String user = "user";
     private String password = "root";
 
-    public jdbcExpressionDAO() {
+    public void init() {
         loadDriver();
     }
 

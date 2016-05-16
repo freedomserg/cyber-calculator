@@ -9,4 +9,10 @@
 
     <bean id="doubles-calculator" class="DoublesCalculator"/>
 
+    <bean id="bootstrap" class="Bootstrap">
+        <property name="expressionDAO" ref="jdbc-ExpressionDAO"/>
+    </bean>
+
+    <bean id="jdbc-ExpressionDAO" class="jdbcExpressionDAO" init-method="init"/>
+
 </beans>
