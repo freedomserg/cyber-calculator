@@ -4,6 +4,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.IOException;
 
 public class Bootstrap {
+    private static ExpressionDAO expressionDAO = new jdbcExpressionDAO();
+
     public static void main(String[] args) throws IOException {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml",
                 "aop-context.xml");
@@ -11,6 +13,7 @@ public class Bootstrap {
         IOUtil.printToConsole("Please, enter an expression to evaluate: ");
         String expression = IOUtil.getExpression();
         String result = cyberCalculator.getResult(expression);
+        expressionDAO.write(expression, result);
         IOUtil.printToConsole(expression);
         IOUtil.printEqualSign();
         IOUtil.printToConsole(result);
