@@ -13,7 +13,7 @@ public class IOUtil {
         System.out.print(text);
     }
 
-    public static String getEqualSign() {
-        return " = ";
+    public static void printEqualSign() {
+        System.out.print(" = ");
     }
 }

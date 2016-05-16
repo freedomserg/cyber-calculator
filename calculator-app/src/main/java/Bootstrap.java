@@ -10,8 +10,9 @@ public class Bootstrap {
         CyberCalculator cyberCalculator = applicationContext.getBean("cyber-calculator", CyberCalculator.class);
         IOUtil.printToConsole("Please, enter an expression to evaluate: ");
         String expression = IOUtil.getExpression();
+        String result = cyberCalculator.getResult(expression);
         IOUtil.printToConsole(expression);
-        IOUtil.printToConsole(IOUtil.getEqualSign());
-        IOUtil.printToConsole(cyberCalculator.getResult(expression));
+        IOUtil.printEqualSign();
+        IOUtil.printToConsole(result);
     }
 }
