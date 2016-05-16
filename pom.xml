@@ -4,7 +4,7 @@
   <groupId>net.syrotskyi.projects</groupId>
   <artifactId>cyber-calculator</artifactId>
   <packaging>pom</packaging>
-  <version>0.9</version>
+  <version>0.2</version>
 
     <properties>
         <!-- Versions -->

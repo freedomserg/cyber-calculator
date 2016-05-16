@@ -5,7 +5,7 @@
     <parent>
         <artifactId>cyber-calculator</artifactId>
         <groupId>net.syrotskyi.projects</groupId>
-        <version>0.9</version>
+        <version>0.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,7 +18,7 @@
         <spring.version>4.2.5.RELEASE</spring.version>
         <slf4j.version>1.7.21</slf4j.version>
         <aspectj.version>1.8.9</aspectj.version>
-        <calculator-lib.version>0.9</calculator-lib.version>
+        <calculator-lib.version>0.2</calculator-lib.version>
     </properties>
 
     <build>
